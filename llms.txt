@@ -20,6 +20,8 @@ Figures in an answer are quoted word for word from a cited clause or the summary
 - [source/rfp/parse.py](source/rfp/parse.py): splits documents into numbered clauses
 - [source/rfp/resolve.py](source/rfp/resolve.py): decides which text governs after amendments
 - [source/rfp/answer.py](source/rfp/answer.py): retrieval, model call, and every check
+- [source/rfp/provenance.py](source/rfp/provenance.py): Merkle proofs for every cited clause, the amendment hash chain, and a receipt per answer (optional Ed25519 signing)
+- [tools/verify_receipt.py](tools/verify_receipt.py): checks a saved answer's proofs and receipt
 - [mcp/server.py](mcp/server.py): stdio MCP server with answer_question and list_questions
 
 ## Optional

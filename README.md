@@ -33,6 +33,23 @@ The documents in `data/` are a short fictional RFP and amendment written for thi
 Every result carries `status`, `answer`, `citations` (clause id, citation and full clause text), `notes` and `gate`
 (the check that decided the outcome), so a reviewer can see why it answered or refused.
 
+## Provenance: proof, not trust
+
+Answers through MCP also carry a `receipt`, and every citation carries a `proof`, so anyone can check an answer
+without trusting this tool:
+
+- **Clause proofs.** Each document (the RFP, each amendment) is hashed into a Merkle root over its clauses. Each
+  citation carries the path from its clause to that root, so a quoted clause that was edited, or never in the
+  document, fails.
+- **Amendment chain.** The document roots are chained in order (base, then amendments by number). The chain head names
+  the exact package an answer used, so a missing, extra or edited amendment is caught.
+- **Receipt.** A SHA-256 digest over the question, status, answer, gate, cited clauses, package and a hash of the
+  engine's own code. Optionally signed with Ed25519: install PyNaCl (`pip install pynacl`) and set `RFP_SIGNING_KEY`
+  (a 32-byte private key in hex). Without both, receipts are hashed and say `unsigned` with the reason.
+
+Check a saved answer: `python3 tools/verify_receipt.py answer.json --data data/ [--public-key HEX]` (PASS, or each
+failure by clause). Tests, including deliberate tampering: `python3 -m unittest discover -s tests`.
+
 ## How you use it
 
 `mcp/` is a local stdio MCP server with two tools, `answer_question` and `list_questions`, for Claude Code or Claude
@@ -80,6 +97,10 @@ server:
   loosely. Full clause text is returned so the reader can check.
 - **Plain-text documents in one numbering style** (`SECTION n`, clauses `n.n`, amendments `A1.n`). PDFs and other
   layouts need an ingest step first.
+- **Provenance proves consistency, not officialness.** A receipt shows the quoted clauses are in the documents that
+  were loaded. That those documents are the agency's official copies needs `--data` pointed at a copy you trust, or
+  the agency's signature. Receipts are not yet timestamped or anchored anywhere public (an EAS attestation on an
+  Ethereum L2 is designed, not built), and signing keys are yours to manage.
 - **Built for RFPs, not contracts.** Amendment handling (revise, supplement, unchanged) maps onto contract
   amendments, but clause types such as indemnity or termination have no special handling.
 
@@ -88,6 +109,9 @@ server:
 | Path | What it is |
 |---|---|
 | `source/rfp/` | The engine: `parse.py`, `resolve.py` (amendments), `answer.py` (search, model call, checks), `store.py`, `provider.py` (claude, local Ollama, mock) |
+| `source/rfp/provenance.py` | Clause Merkle proofs, the amendment hash chain, answer receipts and their check |
 | `source/loader.py` | Loads the documents in `data/` |
+| `tools/verify_receipt.py` | Checks a saved answer's proofs and receipt, optionally against official documents |
+| `tests/` | Provenance tests, including deliberate tampering (`python3 -m unittest discover -s tests`) |
 | `mcp/` | Claude MCP server, its eval runner and the sample trap cases |
 | `data/` | The fictional sample RFP, its amendment and sample questions |

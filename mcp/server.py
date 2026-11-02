@@ -17,6 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "source"))
 
 from rfp import answer as engine  # noqa: E402
+from rfp import provenance  # noqa: E402
 from loader import documents, load  # noqa: E402
 
 DATA = os.environ.get("RFP_DATA_DIR", os.path.join(HERE, "..", "data"))
@@ -48,13 +49,14 @@ def db():
 
 
 def answer_question(question):
-    r = engine.answer(db(), question)
+    r = provenance.with_receipt(db(), engine.answer(db(), question))  # adds clause proofs and a receipt; answer unchanged
     return {"status": r["status"],
             "refused": r["status"] != "answered",
             "answer": r["answer"],
             "citations": r.get("citations", []),
             "notes": r.get("notes", []),
-            "gate": r.get("gate")}
+            "gate": r.get("gate"),
+            "receipt": r["receipt"]}
 
 
 def list_questions():
