@@ -1,4 +1,7 @@
 # No third-party packages: Python 3.9 or newer, standard library only. Nothing to pip install.
 #
+# Optional extra (approved 2026-11-02): pynacl, only to sign answer receipts with Ed25519. Without it, receipts are
+# hashed and marked unsigned; everything else works.
+#
 # Optional, outside Python:
 #   Ollama with qwen2.5:7b-instruct  for --provider local (the AI step stays on this machine)

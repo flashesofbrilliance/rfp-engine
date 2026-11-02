@@ -19,4 +19,9 @@ def check(case, r):
     fails += ["forbidden %s" % f for f in case["must_not_say"] if has_figure(r["answer"], f)]
     if case.get("must_note") and not any(case["must_note"] in n for n in r.get("notes", [])):
         fails.append("missing note on %s" % case["must_note"])
+    if case.get("must_prove"):
+        from rfp import provenance
+        if not r.get("citations"):
+            fails.append("must_prove: no citations to prove")
+        fails += ["provenance: %s" % f for f in provenance.verify(r)]
     return fails
