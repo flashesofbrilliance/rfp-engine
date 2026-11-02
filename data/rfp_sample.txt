@@ -1,0 +1,43 @@
+HARBOR COUNTY TRANSIT AUTHORITY
+REQUEST FOR PROPOSALS RFP 2026-11
+CONTRACT MANAGEMENT PLATFORM
+Issued: August 3, 2026 | Fictional sample document written for this work sample
+================================================================
+SECTION 1 — INTRODUCTION (pp. 1–2)
+================================================================
+1.1 Purpose. Harbor County Transit Authority ("the Authority") seeks
+proposals for a hosted contract management platform to store, search
+and track obligations in approximately 4,000 active vendor contracts.
+1.2 Term. The initial contract term is three years, with two optional
+one-year renewals at the Authority's sole discretion.
+================================================================
+SECTION 3 — SCHEDULE (pp. 3–4)
+================================================================
+3.1 Questions. Written questions must be submitted through the
+procurement portal no later than September 18, 2026.
+3.2 Key Dates. Proposal Submission Deadline: October 16, 2026, 2:00 PM
+PT. Shortlist notification: November 20, 2026 (estimated). Contract
+award: January 2027 (estimated).
+3.3 Late Proposals. Proposals received after the deadline will not be
+opened. The portal timestamp is final.
+================================================================
+SECTION 5 — ELIGIBILITY (pp. 5–6)
+================================================================
+5.1 Experience. Each Respondent shall demonstrate at least two
+deployments of a contract management platform for public agencies.
+5.2 Data Residency. All Authority data shall be stored in data centres
+located in the United States.
+================================================================
+SECTION 7 — FINANCIAL SECURITY (pp. 7–8)
+================================================================
+7.1 Bid Deposit. Each Respondent shall post a bid deposit of $20,000
+in the form of a cashier's check or bid bond with its proposal.
+7.2 Return of Deposit. Bid deposits of unsuccessful Respondents will be
+returned within 30 days after contract award.
+================================================================
+SECTION 8 — EVALUATION (pp. 9–10)
+================================================================
+8.1 Evaluation Weights. Proposals will be scored as follows: Technical
+fit 40%; Security and compliance 25%; Price 25%; References 10%.
+8.2 Interviews. The Authority may invite shortlisted Respondents to a
+demonstration. Demonstrations are not separately scored.

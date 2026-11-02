@@ -1,0 +1,103 @@
+{
+ "about": "Question words mapped to the RFP's words, used by search.",
+ "vocabulary": {
+  "note": "Question words mapped to the RFP's words, used by search.",
+  "map": {
+   "day": [
+    "date"
+   ],
+   "public": [
+    "publish",
+    "confidential"
+   ],
+   "winner": [
+    "selection",
+    "selected"
+   ],
+   "due": [
+    "deadline",
+    "submission"
+   ],
+   "upload": [
+    "portal",
+    "timestamp",
+    "late",
+    "received"
+   ],
+   "deposit": [
+    "bid"
+   ],
+   "weights": [
+    "evaluation",
+    "criteria"
+   ],
+   "insurance": [
+    "liability"
+   ],
+   "security": [
+    "letter",
+    "credit"
+   ],
+   "damages": [
+    "liquidated"
+   ],
+   "contact": [
+    "communications",
+    "prohibited"
+   ],
+   "call": [
+    "contact",
+    "communications"
+   ],
+   "lc": [
+    "letter",
+    "credit"
+   ],
+   "sda": [
+    "agreement"
+   ],
+   "cod": [
+    "commercial",
+    "operation"
+   ],
+   "penalty": [
+    "liquidated",
+    "damages"
+   ],
+   "penalties": [
+    "liquidated",
+    "damages"
+   ],
+   "late": [
+    "liquidated",
+    "damages",
+    "commercial",
+    "operation"
+   ],
+   "uptime": [
+    "availability"
+   ],
+   "availability": [
+    "availability"
+   ],
+   "bond": [
+    "security"
+   ],
+   "cutoff": [
+    "deadline",
+    "submission"
+   ],
+   "qualify": [
+    "eligibility",
+    "eligible"
+   ],
+   "qualified": [
+    "eligibility"
+   ],
+   "bids": [
+    "proposal",
+    "proposals"
+   ]
+  }
+ }
+}

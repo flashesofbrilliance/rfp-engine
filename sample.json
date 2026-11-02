@@ -1,0 +1,100 @@
+{
+ "name": "RFP answering engine",
+ "summary": "Answers questions about an RFP and its amendments with the exact clauses it rests on, or refuses.",
+ "runtime": "Python 3.9+, standard library only",
+ "install": "claude mcp add rfp-intelligence -e MODEL_PROVIDER=mock -- python3 /PATH/TO/mcp/server.py",
+ "mcp_tools": {
+  "answer_question": {
+   "input": {
+    "question": "string, at most 2000 characters"
+   },
+   "returns": [
+    "status",
+    "refused",
+    "answer",
+    "citations",
+    "notes",
+    "gate"
+   ]
+  },
+  "list_questions": {
+   "input": {},
+   "returns": [
+    "questions",
+    "documents"
+   ]
+  }
+ },
+ "status_values": [
+  "answered",
+  "needs_review",
+  "not_addressed",
+  "unavailable",
+  "error"
+ ],
+ "model_providers": [
+  "claude",
+  "local",
+  "mock"
+ ],
+ "trust_rules": [
+  "No answer without a source: a cited clause that does not exist is an error",
+  "Every $, date and % in an answer must appear word for word in a cited clause, or the summary is withheld",
+  "Citing a base clause pulls in the amendment that replaced it",
+  "Not addressed in the RFP is a valid answer; a missing appendix is reported",
+  "Drafting proposal language and bid verdicts are refused before any model call",
+  "No model available means status unavailable with the relevant clauses and no answer"
+ ],
+ "example": {
+  "question": "What is the bid deposit?",
+  "status": "answered",
+  "answer": "Section 7.1 (Bid Deposit) is revised: the bid deposit is increased from $20,000 to $35,000.",
+  "citations": [
+   "RFP 7.1",
+   "Amendment No. 1 A1.2"
+  ],
+  "gate": "fast path: verbatim governing text, no model call"
+ },
+ "measured": {
+  "date": "2026-10-29",
+  "deterministic_cases": {
+   "passed": 5,
+   "total": 5,
+   "wrapper_identical_to_engine": true
+  },
+  "injected_faults_caught": [
+   "timeout",
+   "garbage",
+   "fake clause",
+   "invented figures",
+   "changed figure",
+   "superseded figure",
+   "drafting",
+   "bid verdict"
+  ],
+  "model_dependent_cases": {
+   "total": 3,
+   "run_with_real_model": false,
+   "note": "No API key where this was packaged; without one they return unavailable, as designed."
+  }
+ },
+ "not_proven": [
+  "No calibrated confidence score; results are categorical",
+  "Keyword retrieval, no embeddings",
+  "Figures are checked; meaning is not",
+  "Plain text in one numbering style; PDFs need an ingest step",
+  "Built for RFPs; contract clause types get no special handling"
+ ],
+ "data": "data/ holds a short fictional RFP and one amendment written for this sample",
+ "agent_files": {
+  "AGENTS.md": "shared base; read by Codex and Hermes",
+  "CLAUDE.md": "Claude Code; imports AGENTS.md",
+  "agents/openai.md": "OpenAI Agents SDK (stdio MCP) and Responses API notes",
+  "agents/hermes.md": "Hermes config.yaml mcp_servers entry"
+ },
+ "agent_files_tested": {
+  "claude_code": "MCP server and eval run locally",
+  "openai": false,
+  "hermes": false
+ }
+}

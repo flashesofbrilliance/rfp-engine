@@ -1,0 +1,29 @@
+# RFP answering engine
+
+> A small engine that answers questions about a solicitation (RFP) and its amendments with the exact clauses it rests on, or refuses. Python 3.9+, standard library only. Runs locally as an MCP server for Claude Code or Claude Desktop.
+
+Figures in an answer are quoted word for word from a cited clause or the summary is withheld. An amended value always wins over the base text. Drafting proposal language and bid/no-bid verdicts are refused in code. With no model available it fails closed: status "unavailable", relevant clauses, no answer. The documents in data/ are a short fictional RFP and one amendment written for this sample.
+
+## Start here
+
+- [README.md](README.md): what it does, trust rules, measured results, gaps
+- [sample.json](sample.json): the same facts as structured data
+- [altitude-components.html](altitude-components.html): the three reading depths and their construction rules (checked by tools/altitude_lint.py)
+- [AGENTS.md](AGENTS.md): instructions for coding agents (shared base; Codex and Hermes read it)
+- [CLAUDE.md](CLAUDE.md): Claude Code entry, imports AGENTS.md
+- [agents/openai.md](agents/openai.md): OpenAI Agents SDK and Responses API
+- [agents/hermes.md](agents/hermes.md): Hermes MCP config
+- [mcp/README.md](mcp/README.md): install the MCP server and run the checks
+
+## Code
+
+- [source/rfp/parse.py](source/rfp/parse.py): splits documents into numbered clauses
+- [source/rfp/resolve.py](source/rfp/resolve.py): decides which text governs after amendments
+- [source/rfp/answer.py](source/rfp/answer.py): retrieval, model call, and every check
+- [mcp/server.py](mcp/server.py): stdio MCP server with answer_question and list_questions
+
+## Optional
+
+- [data/rfp_sample.txt](data/rfp_sample.txt): the fictional RFP
+- [data/rfp_sample_amendment_1.txt](data/rfp_sample_amendment_1.txt): its amendment
+- [mcp/sample_golden.json](mcp/sample_golden.json): the 8 evaluation cases

@@ -1,0 +1,5 @@
+Q1.  What is the bid deposit?
+Q2.  When are proposals due?
+Q3.  What are the evaluation weights?
+Q4.  Where must the data be stored?
+Q5.  When do unsuccessful respondents get their deposit back?

@@ -1,0 +1,22 @@
+{
+  "t": "2026-10-30T23:47:44.203314+00:00",
+  "latency_s": 1.77,
+  "model": "claude-sonnet-5-5",
+  "raw_model_reply": "{\"status\": \"answered\", \"clause_ids\": [\"A1.2\", \"7.1\"], \"answer\": \"No. Amendment No. 1 (\u00a7A1.2) revises \u00a77.1 and increases the bid deposit from $20,000 to $35,000, so the amended deposit is $35,000, not roughly $30,000.\"}",
+  "id": "A3",
+  "q": "The deposit is roughly $30,000, right?",
+  "status": "answered",
+  "gate": "verbatim FAILED: ['$30,000']",
+  "answer": "See the cited text below (the model's summary failed the verbatim check).",
+  "cites": [
+    "A1.2",
+    "7.1"
+  ],
+  "verdict": "withheld",
+  "why": "",
+  "usage": {
+    "input_tokens": 645,
+    "output_tokens": 104
+  },
+  "usd": 0.00233
+}

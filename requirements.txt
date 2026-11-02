@@ -1,0 +1,4 @@
+# No third-party packages: Python 3.9 or newer, standard library only. Nothing to pip install.
+#
+# Optional, outside Python:
+#   Ollama with qwen2.5:7b-instruct  for --provider local (the AI step stays on this machine)
