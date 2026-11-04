@@ -96,7 +96,8 @@ server:
 - **Figures are checked, meaning is not.** A summary with only verbatim figures can still paraphrase a clause
   loosely. Full clause text is returned so the reader can check.
 - **Plain-text documents in one numbering style** (`SECTION n`, clauses `n.n`, amendments `A1.n`). PDFs and other
-  layouts need an ingest step first.
+  layouts need an ingest step first. A file in the data folder that is not `.txt` (or a subfolder) stops the load and
+  is named in the error, so an amendment saved as Word or PDF is never silently left out.
 - **Provenance proves consistency, not officialness.** A receipt shows the quoted clauses are in the documents that
   were loaded. That those documents are the agency's official copies needs `--data` pointed at a copy you trust, or
   the agency's signature. Receipts are not yet timestamped or anchored anywhere public (an EAS attestation on an
