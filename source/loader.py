@@ -9,9 +9,18 @@ DATA = os.path.join(os.path.dirname(__file__), "..", "data")
 def documents(folder=None):
     """Every solicitation document in data/: the base RFP first, then amendments in number order, so a new
     Amendment No. 2 dropped into the folder applies on top of No. 1 with no code change. Only a named non-document
-    file (the sample questions) is skipped; any other file with no clauses is refused as unreadable by store.ingest."""
+    file (the sample questions) is skipped; any other file with no clauses is refused as unreadable by store.ingest.
+    Any file that is not .txt, or any folder (an amendment saved as Word or PDF), stops the load: skipping it once
+    answered a superseded figure as current with no warning. Hidden files (.DS_Store) are not documents."""
     from rfp import parse as P
     folder = folder or DATA
+    unread = sorted(f for f in os.listdir(folder) if not f.startswith(".") and
+                    (not f.endswith(".txt") or os.path.isdir(os.path.join(folder, f))))
+    if unread:
+        raise store.UnreadableDocument("%s: this engine reads only .txt files at the top of the folder and cannot read %s. "
+                                       "Convert each to text in the sample RFP's layout, or move it out of the folder. "
+                                       "Nothing was loaded: an unread amendment would let a superseded value pass as current."
+                                       % (folder, ", ".join(unread)))
     found = []
     for f in sorted(os.listdir(folder)):
         if not f.endswith(".txt"):
